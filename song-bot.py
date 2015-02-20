@@ -7,9 +7,15 @@
 import requests
 import sys
 import os
+import signal
 from BeautifulSoup import BeautifulSoup
 from progressbar import *
 
+def handle_quit(signum, stack):
+    print '\nExiting...'
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, handle_quit)
 
 def movie_finder(base_url, movie_name):
     found = False
